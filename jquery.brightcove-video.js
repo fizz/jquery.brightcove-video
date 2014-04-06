@@ -30,7 +30,9 @@ var
 			if ( typeof brightcove === "undefined" ) {
 				$
 					.ajax({
-							url: "http://admin.brightcove.com/js/BrightcoveExperiences.js",
+							url: "https:" == document.location.protocol
+								? "https://sadmin.brightcove.com/js/BrightcoveExperiences.js"
+								: "http://admin.brightcove.com/js/BrightcoveExperiences.js",
 							dataType: "script",
 							cache: true
 						})
@@ -75,7 +77,8 @@ var
 							height: null,
 							playerID: null,
 							playerKey: null,
-							secureConnections: null,
+				    			secureConnections: null,
+				    			secureHTMLConnections: null,
 							templateErrorHandler: null,
 							templateLoadHandler: null,
 							templateReadyHandler: null,
@@ -87,7 +90,12 @@ var
 							isUI: true,
 							isVid: true,
 							wmode: "transparent"
-				    	}, options );
+				    	},
+				    	"https:" == document.location.protocol ? {
+				    		secureConnections: true,
+				    		secureHTMLConnections: true
+				    	} : { },
+				    	options );
 
 					brightcove.JBVData.onTemplateLoad[ "player" + brightcove.JBVData.countPlayers ] = function( experienceID ) {
 						data.experienceID = experienceID;
