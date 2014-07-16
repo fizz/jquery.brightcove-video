@@ -89,7 +89,9 @@ var
               includeAPI: true,
               isUI: true,
               isVid: true,
-              wmode: "transparent"
+              wmode: "transparent",
+              dynamicStreaming: true,
+              htmlFallback: true
               },
               "https:" == document.location.protocol ? {
                 secureConnections: true,
